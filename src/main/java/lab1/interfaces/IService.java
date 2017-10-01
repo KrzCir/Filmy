@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface IService <T> {
 
-	public void insert(T rec);
-	public void delete(T rec);
+	public T insert(T rec);
+	public boolean delete(T rec);
 	public void update(T rec);
 	public T find(int Id);
 	
