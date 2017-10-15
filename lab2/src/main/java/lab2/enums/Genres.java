@@ -1,4 +1,4 @@
-package lab1.enums;
+package lab2.enums;
 
 public enum Genres {
 

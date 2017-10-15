@@ -1,7 +1,7 @@
-package lab1.services;
+package lab2.services;
 
-import lab1.interfaces.IFilmService;
-import lab1.models.Film;
+import lab2.interfaces.IFilmService;
+import lab2.models.Film;
 
 public class FilmService extends Service<Film> implements IFilmService {
 

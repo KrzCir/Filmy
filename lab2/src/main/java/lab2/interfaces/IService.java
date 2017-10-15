@@ -1,4 +1,4 @@
-package lab1.interfaces;
+package lab2.interfaces;
 
 import java.util.List;
 

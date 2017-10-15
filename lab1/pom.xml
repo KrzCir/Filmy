@@ -8,10 +8,10 @@
   
   <modelVersion>4.0.0</modelVersion>
   <groupId>TAU</groupId>
-  <artifactId>Filmy</artifactId>
+  <artifactId>Filmy-Lab1</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>Filmy</name>
+  <name>Filmy-Lab1</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>

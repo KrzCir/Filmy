@@ -1,14 +1,14 @@
-package lab1;
+package lab2;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
 
-import lab1.interfaces.IFilmService;
-import lab1.models.Film;
-import lab1.services.FilmService;
-
 import org.junit.Test;
+
+import lab2.interfaces.IFilmService;
+import lab2.models.Film;
+import lab2.services.FilmService;
 
 public class FilmServiceTest 
 {

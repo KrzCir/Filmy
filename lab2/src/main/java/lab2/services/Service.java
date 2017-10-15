@@ -1,10 +1,10 @@
-package lab1.services;
+package lab2.services;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import lab1.models.Record;
-import lab1.interfaces.IService;
+import lab2.interfaces.IService;
+import lab2.models.Record;
 
 public abstract class Service<T extends Record> implements IService<T> {
 
