@@ -2,65 +2,80 @@ package lab2;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import lab2.models.Film;
 
 import lab2.interfaces.IFilmService;
-import lab2.models.Film;
+import lab2.exceptions.RecordNotFoundException;
+import lab2.interfaces.IDbConector;
 import lab2.services.FilmService;
 
+@RunWith(MockitoJUnitRunner.class)
 public class FilmServiceTest 
 {
-	IFilmService fs = new FilmService();
+	@Mock
+	IDbConector	conector;
 	
-	public Film PrepareFilmData()
+	IFilmService fs;
+	
+	@Before
+	public void setup()
 	{
-		return new Film();
+		fs = new FilmService(conector);
 	}
 	
+	@Test
+	public void testRemovePartsOfList() throws RecordNotFoundException
+	{
+		List<Film> list = new ArrayList<Film>();
+		
+		fs.removeList(list);
+	}
+	
+	@Test
+	public void testFindByTitle()
+	{
+		fs.findByTitle("");
+	}
+	
+	@Test
+	public void testFindByExpression()
+	{
+		fs.findByExpression( Pattern.compile("") );
+	}
+	
+	/*
 	@Test
 	public void testInsert()
 	{
-		Film f = PrepareFilmData();
-		f = fs.insert(f);
-		assertNotNull(fs.find(f.getId()));
+		
 	}
 	
 	@Test
-	public void testRemove()
+	public void testDelete()
 	{
-		Film f = PrepareFilmData();
-		f = this.fs.insert(f);
-		assertEquals(true, this.fs.delete(f));
-		assertNull(this.fs.find(f.getId()));
+		
 	}
 	
 	@Test
 	public void testUpdate()
 	{
-		Film f = this.fs.find(0);
 		
-		if (f == null)
-			f = this.fs.insert(this.PrepareFilmData());
-		
-		assertNotNull("Nie znaleziono pierwszego rekordu",f);
-		
-		f.setTitle("Nowy tytul");
-		fs.update(f);
-		Film f2 = this.fs.find(0);
-		
-		assertNotNull("Nie znaleziono f2?",f2);
-		assertEquals(f.getTitle(), f2.getTitle());
 	}
 	
 	@Test
-	public void testGet()
+	public void testRemove()
 	{
-		List<Film> films = this.fs.records();
-		for(Film f : films)
-		{
-			assertNotNull(this.fs.find(f.getId()));
-		}
+		
 	}
+	*/
 }

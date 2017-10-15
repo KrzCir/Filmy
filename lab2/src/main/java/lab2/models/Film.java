@@ -1,5 +1,7 @@
 package lab2.models;
 
+import java.util.regex.Pattern;
+
 import lab2.enums.Genres;
 
 public class Film extends Record {
@@ -9,6 +11,28 @@ public class Film extends Record {
 	private String Production;
 	private String Direction;
 
+	public boolean match(Pattern p)
+	{
+		boolean res = false;
+		
+		if (!res)
+			res = p.matcher(this.getTitle()).matches();
+		
+		if (!res)
+			res = p.matcher(this.getDirection()).matches();
+		
+		if (!res)
+			res = p.matcher(this.getProduction()).matches();
+		
+		if (!res)
+			res = p.matcher(this.getGenre().toString()).matches();
+		
+		if (!res)
+			res = super.match(p);
+		
+		return res;
+	}
+	
 	// Generate Getters and Setters
 	public String getDirection() {
 		return Direction;

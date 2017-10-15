@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lab1.models.Record;
+import lab1.exceptions.RecordNotFoundException;
 import lab1.interfaces.IService;
 
 public abstract class Service<T extends Record> implements IService<T> {
@@ -26,38 +27,63 @@ public abstract class Service<T extends Record> implements IService<T> {
 		return rec;
 	}
 	
-	public boolean delete(T rec)
+	public boolean correctId(int Id)
 	{
-		if (rec.getId() >= 0 && rec.getId() <= this.currentId)
+		return (Id >= 0 && Id <= this.currentId);
+	}
+	
+	public void delete(T rec) throws RecordNotFoundException
+	{
+		if (this.correctId(rec.getId()))
 		{
 			this.cache.remove(rec.getId());
 			numOfRecords--;
-			return true;
 		}
-		return false;
+		else
+			throw new RecordNotFoundException();
 	}
 	
-	public void update(T rec)
+	public void update(T rec) throws RecordNotFoundException
 	{
-		this.cache.set(rec.getId(), rec);
+		if (this.correctId(rec.getId()))
+		{
+			this.cache.set(rec.getId(), rec);
+		}
+		else
+			throw new RecordNotFoundException();
 	}
 	
-	public T find(int Id)
+	public T find(int Id) throws RecordNotFoundException
 	{	
 		T res = null;
-		try
+		if (this.correctId(Id))
 		{
-			res = (Id > currentId) ? null : cache.get(Id);
+			try
+			{
+				res = cache.get(Id);
+			}
+			catch (java.lang.IndexOutOfBoundsException e)
+			{
+				res = null;
+			}
 		}
-		catch (java.lang.IndexOutOfBoundsException e)
-		{
-			res = null;
-		}
+		else
+			throw new RecordNotFoundException();
+
 		return res;
 	}
 	
 	public List<T> records()
 	{
 		return cache;
+	}
+	
+	public T findFirst()
+	{
+		for(T t : cache)
+		{
+			return t;
+		}
+		return null;
 	}
 }
