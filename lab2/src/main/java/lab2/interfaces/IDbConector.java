@@ -10,4 +10,5 @@ public interface IDbConector <T extends Record> {
 	public void delete(T rec) throws RecordNotFoundException;
 	public void update(T rec) throws RecordNotFoundException;
 	public List<T> getAll();
+	public T get(String expression) throws RecordNotFoundException;
 }

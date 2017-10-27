@@ -26,31 +26,25 @@ public class FilmService extends Service<Film> implements IFilmService{
 		return null;
 	}
 	
-	public List<Film> findByExpression(Pattern p)
+	public Film findByExpression(String expression) throws RecordNotFoundException
 	{
-		List<Film> res = new ArrayList<Film>();
-		boolean add = false;
+		Pattern p = Pattern.compile(expression);
+		Film res = null; 
 		
-		for(Film f : this.getConector().getAll())
+		for( Film f : this.conector.getAll())
 		{
 			if (f.match(p))
-				res.add(f);
+				res = f;
 		}
 		
 		return res;
 	}
 	
-	public boolean removeList(List<Film> list) throws RecordNotFoundException
+	public void removeList(List<Film> list) throws RecordNotFoundException
 	{
-		boolean ret = true;
-		
 		for(Film f : list)
 		{
-			if (!this.exists(f))
-				throw new RecordNotFoundException();
+			this.getConector().delete(f);
 		}
-		
-		
-		return ret;
 	}
 }

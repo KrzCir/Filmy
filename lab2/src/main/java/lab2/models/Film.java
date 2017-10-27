@@ -16,6 +16,9 @@ public class Film extends Record {
 		boolean res = false;
 		
 		if (!res)
+			res = p.matcher(""+this.getId()).matches();
+		
+		if (!res)
 			res = p.matcher(this.getTitle()).matches();
 		
 		if (!res)

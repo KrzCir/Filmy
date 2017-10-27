@@ -1,11 +1,12 @@
 package lab2.services;
 
 import lab2.interfaces.IDbConector;
+import lab2.interfaces.IService;
 import lab2.models.Record;
 
-public abstract class Service<T extends Record>{
+public abstract class Service<T extends Record> implements IService<T>{
 
-	private IDbConector<T> conector;
+	protected IDbConector<T> conector;
 	
 	protected Service(IDbConector<T> con)
 	{
@@ -29,4 +30,5 @@ public abstract class Service<T extends Record>{
 		}
 		return false;
 	}
+
 }
