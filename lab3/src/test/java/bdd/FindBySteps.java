@@ -15,7 +15,7 @@ import lab3.services.FilmService;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class FindByTest {
+public class FindBySteps {
 
     private IDbConector conector;
     private IFilmService filmService;
