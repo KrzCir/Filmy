@@ -44,7 +44,7 @@ public class TestSite {
     }
 
 	
-	/*
+
 	@Test
 	public void hasLinkToShoppingCart(){
 		homePage.open();
@@ -118,9 +118,8 @@ public class TestSite {
 		homePage.clickLoginLink();
 		assertEquals(true, loginPage.isURLLoginPage() );
 	}
-	*/
+
 	
-	/*
 	@Test
 	public void failRegisterAccount()
 	{
@@ -177,8 +176,7 @@ public class TestSite {
 		loginPage.submitAccount();
 		
 		//assertEquals(true, loginPage.sukcessCreateAccount());
-	}	
-	*/
+	}
 	
 	@Test
 	public void failLogin(){
@@ -206,13 +204,14 @@ public class TestSite {
 		assertNotNull(loginPage.getPasswdElement());
 		assertNotNull(loginPage.getButtonSubmitLogin());
 		
-		loginPage.setEmail("");
-		loginPage.setPasswd("");
+		loginPage.setEmail("newSuperAccount@gmail.com");
+		loginPage.setPasswd("passwd");
 		
 		loginPage.submitLogin();
 		
 		//assertEquals( true, loginPage.sukcessLoginAccount());
 	}
+	
 	
 	@AfterClass
 	public static void cleanup() {
