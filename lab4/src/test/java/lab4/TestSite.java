@@ -29,7 +29,9 @@ public class TestSite {
 
     	System.setProperty(
     		"webdriver.chrome.driver",
-    		"src/test/java/resources/chromedriver.exe" 
+    		"C:\\chromedriver_win32\\chromedriver.exe"
+    		//"C:\\pathto\\my\\chromedriver.exe"
+    		//"src/test/java/resources/chromedriver.exe" 
     	);
     	
 		driver = new ChromeDriver();
