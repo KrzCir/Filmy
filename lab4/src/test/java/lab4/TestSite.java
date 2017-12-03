@@ -13,6 +13,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import lab4.pages.*;
+import lab4.models.RandomString;
 
 import static org.junit.Assert.*;
 
@@ -44,7 +45,6 @@ public class TestSite {
     }
 
 	
-
 	@Test
 	public void hasLinkToShoppingCart(){
 		homePage.open();
@@ -132,16 +132,15 @@ public class TestSite {
 		
 		assertEquals(false, loginPage.sukcessCreateAccount());
 	}
-
 	
 	@Test
-	public void sukcessRegisterAccount()
+	public void sukcessRegisterAccountAndLogout()
 	{
 		loginPage.open();
 		assertNotNull(loginPage.getEmailElement());	
 		assertNotNull(loginPage.getButtonCreateAccount());
 		
-		loginPage.setEmail("newSuperAccount@gmail.com");
+		loginPage.setEmail( new RandomString().nextString()+"@test.pl" );
 		
 		loginPage.createAccount();
 		
@@ -159,6 +158,7 @@ public class TestSite {
 		assertNotNull(loginPage.getCountryIdElement());
 		assertNotNull(loginPage.getMobilePhoneElement());
 		assertNotNull(loginPage.getAliasElement());
+		assertNotNull(loginPage.getStreetElement());
 					
 		loginPage.setCustomerFirstName("Jan");
 		loginPage.setCustomerLastName("Kowalski");
@@ -166,16 +166,19 @@ public class TestSite {
 		loginPage.setFirstName("Jan");
 		loginPage.setLastName("Kowalski");
 		loginPage.setCompany("Super x");
+		loginPage.setStreet("some");
 		loginPage.setCity("Bolszewo");
-		loginPage.setStateId("1");
-		loginPage.setPostCode("84-239");
+		loginPage.setStateId("Nevada");
+		loginPage.setPostCode("84239");
 		loginPage.setCountryId("48");
 		loginPage.setMobilePhone("512106354");
 		loginPage.setAlias("some alias");		
 		
 		loginPage.submitAccount();
 		
-		//assertEquals(true, loginPage.sukcessCreateAccount());
+		assertNotNull(homePage.getLogoutElement());
+		
+		homePage.clickLogoutLink();
 	}
 	
 	@Test
@@ -196,22 +199,23 @@ public class TestSite {
 	}
 	
 	@Test
-	public void sukcessLogin(){
+	public void sukcessLoginAndLogout(){
 		loginPage.open();
 		assertNotNull(loginPage.getButtonSubmitLogin());	
 		
-		assertNotNull(loginPage.getEmailElement());
+		assertNotNull(loginPage.getLoginElement());
 		assertNotNull(loginPage.getPasswdElement());
 		assertNotNull(loginPage.getButtonSubmitLogin());
 		
-		loginPage.setEmail("newSuperAccount@gmail.com");
+		loginPage.setLogin("newSuperTestAccount@gmail.com");
 		loginPage.setPasswd("passwd");
 		
 		loginPage.submitLogin();
 		
-		//assertEquals( true, loginPage.sukcessLoginAccount());
+		assertNotNull(homePage.getLogoutElement());
+		
+		homePage.clickLogoutLink();
 	}
-	
 	
 	@AfterClass
 	public static void cleanup() {

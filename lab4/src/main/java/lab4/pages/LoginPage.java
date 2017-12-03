@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,6 +17,9 @@ public class LoginPage {
 	
 	@FindBy( id = "email_create")
 	private WebElement email;
+	
+	@FindBy( id = "email")
+	private WebElement login;
 	
 	@FindBy(id = "SubmitCreate")
 	private WebElement buttonCreateAccount;
@@ -62,6 +66,9 @@ public class LoginPage {
 	@FindBy(id = "alias")
 	private WebElement alias;
 	
+	@FindBy(id = "address1")
+	private WebElement street;
+	
     // ------------------------------------
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -107,6 +114,14 @@ public class LoginPage {
         return this.customerLastName;
     }
 
+    public WebElement getLoginElement(){
+    	return this.login; 
+    }
+    
+    public WebElement getStreetElement(){
+    	return this.street;
+    }
+    
     public String getCustomerLastName(){
         return customerLastName.getText();
     }
@@ -133,6 +148,14 @@ public class LoginPage {
         return firstName.getText();
     }
     
+    public String getLogin(){
+        return login.getText();
+    }
+    
+    public String getStreet(){
+        return street.getText();
+    }
+    
     public void setFirstName(String value){
         firstName.sendKeys(value);
     }
@@ -147,6 +170,11 @@ public class LoginPage {
     public void setLastName(String value){
         lastName.sendKeys(value);
     }
+    
+    public void setLogin(String value){
+        login.sendKeys(value);
+    }
+    
     public WebElement getCompanyElement(){
         return this.company;
     }
@@ -169,6 +197,11 @@ public class LoginPage {
     public void setCity(String value){
         city.sendKeys(value);
     }
+    
+    public void setStreet(String value){
+        street.sendKeys(value);
+    }
+    
     public WebElement getStateIdElement(){
         return this.stateId;
     }
@@ -178,7 +211,9 @@ public class LoginPage {
     }
     
     public void setStateId(String value){
-        stateId.sendKeys(value);
+    	Select select = new Select(stateId);
+    	//select.deselectAll();
+    	select.selectByVisibleText(value);
     }
     public WebElement getPostCodeElement(){
         return this.postCode;
@@ -238,7 +273,7 @@ public class LoginPage {
     }
     
     public boolean sukcessLoginAccount(){
-    	return driver.findElement(By.className("alert alert-danger")) == null;
+    	return driver.findElement(By.xpath("//*[@id=\"center_column\"]/div[1]")) == null;
     }
     
     public void createAccount(){

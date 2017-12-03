@@ -37,6 +37,7 @@ public class HomePage {
     @FindBy(className = "login")
     WebElement loginLink;
     
+    
     // ------------------------------------
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -72,6 +73,10 @@ public class HomePage {
     	return this.dressesMenu;
     }
     
+    public WebElement getLogoutElement(){
+    	return driver.findElement(By.className("logout"));
+    }
+    
     public WebElement getDressesSubMenu(){
     	return this.dressesSubMenu;
     }
@@ -105,13 +110,17 @@ public class HomePage {
     public void clickLoginLink(){
     	this.getLoginLink().click();
     }
-        
+    
+    public void clickLogoutLink(){
+    	this.getLogoutElement().click();
+    }
+    
     // ------------------------------------
     public void moveToDressMenu()
     {
     	Actions a = new Actions(driver);
     	a.moveToElement(this.getDressesMenu());
-    }
+    } 
     
     // ------------------------------------
     public List<WebElement> getProducts() {
